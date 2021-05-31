@@ -15,4 +15,9 @@
 numeros = [1, 5, -1, 6, 10, 2, -5]
 suma = 0   # Variable ya inicializada, la suma arranca en cero
 
+for num in numeros:
+    suma = suma + num
+
+print(f'Resultado de sumar {numeros}: {suma}')
+
 print("terminamos!")
