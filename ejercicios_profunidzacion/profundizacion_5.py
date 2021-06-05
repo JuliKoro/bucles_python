@@ -75,64 +75,46 @@ hacer un bosquejo del sistema ya que deberá utilizar 3 bucles en total,
 3- Otro bucle interno que corre luego de que termine el bucle "2" que
     recorre la lista de palabras y busca la mayor según el motivo ingresado ("1" o "2")
 '''
+from typing import List
 
 print("Mi primer pasito en data analytics")
 # Empezar aquí la resolución del ejercicio
 
-# Ingreso de datos
-texto_1 = input('Ingrese la primera palabra: ')
-texto_2 = input('Ingrese la segunda palabra: ')
-texto_3 = input('Ingrese la tercera palabra: ')
-
-texto = [texto_1, texto_2, texto_3]
-menu = 0
+menu = 0 # Variable que almacena temporalmente la opción que elija el usuario
+palabra = None # Variable temporal que almacena la palabra que luego va a la lista
+texto = [] # Lista de las palabras
+palabra_grande = None # Variable que almacena a la palabra más grande alfabeticamente
+palabra_larga = None # Variable que almacena a la palabra más larga
 # Menú
 while menu != 3:
     print('1 - Obtener la palabra más grande por orden alfabético (usando el operador ">").')
     print('2 - Obtener la palabra más grande por cantidad de letras (longitud de la palabra).')
     print('3 - Salir del programa.')
-    if menu == 1:
-        pass
-    elif menu == 2:
-        pass
-    elif menu == 3:
+    menu = int(input()) # Ingresa opción el usuario
+    if menu == 1 or menu == 2:
+        print('A continuación ingrese las palabras sueltas que desee.\n',
+        'Presione enter por cada una de ellas.\n Si desea terminar ingrese "0".')
+        while palabra != '0' or palabra == None: # Ingreso de palabras
+            palabra = input()
+            if palabra == '0': # Cuadno igrese un 0 deja de pedir palabras
+                break
+            else:
+                texto.append(palabra) # Inserta la palabra ingresada a la lista
+        if menu == 1: # 1- Obtener palabra más grande alfabeticamente
+            for word in texto:
+                if palabra_grande == None or word > palabra_grande:
+                    palabra_grande = word
+            print(f'La palabra más grande alfabeticamente es "{palabra_grande}"')
+        else: # 2- Obtener palabra más larga
+            for word in texto:
+                if palabra_larga == None or len(word) > len(palabra_larga):
+                    palabra_larga = word
+            print(f'La palabra más larga es "{palabra_larga}"')
+        palabra = None # Reseteo la variable temporal de ingreso de palabras
+        texto.clear() # Limpio la lista de palabras para un nuevo uso
+    elif menu == 3: # Salida del programa
+        print('¡Hasta la próxima!')
         break
-    else:
+    else: # Error al ingresar un carácter inválido al menú
         print('Error de menú, por favor vuelva a ingresar la opción.\n')
-
-
-print('\nElija la opción que desee:')
-print('1 - Ordenar por orden alfabético.')
-print('2 - Ordenar por cantidad de letras.\n')
-menu = int(input())
-
-# Ordenado alfabético
-if menu == 1:
-    for x in [0, 2, 3]:
-        if texto[0] > texto[1]:
-            if texto [1] < texto[2]:
-                temp = texto[1] # Variable temporal
-                texto[1] = texto[2] # Intercambio de posiciones
-                texto[2] = temp # Rescato dato del temporal
-        else:
-            temp = texto[0]
-            texto[0] = texto[1]
-            texto[1] = temp 
-    print('Palabras ordenadas alfabéticamente: ', texto)
-
-# Ordenado por longitud
-elif menu == 2:
-   for x in [0, 2, 3]:
-        if len(texto[0]) > len(texto[1]):
-            if len(texto [1]) < len(texto[2]):
-                temp = texto[1] 
-                texto[1] = texto[2]
-                texto[2] = temp
-        else:
-            temp = texto[0]
-            texto[0] = texto[1]
-            texto[1] = temp 
-   print('Palabras ordenadas por longitud: ', texto)
-
-else:
-    print('\nError de menú.')
+        continue
