@@ -78,3 +78,61 @@ hacer un bosquejo del sistema ya que deberá utilizar 3 bucles en total,
 
 print("Mi primer pasito en data analytics")
 # Empezar aquí la resolución del ejercicio
+
+# Ingreso de datos
+texto_1 = input('Ingrese la primera palabra: ')
+texto_2 = input('Ingrese la segunda palabra: ')
+texto_3 = input('Ingrese la tercera palabra: ')
+
+texto = [texto_1, texto_2, texto_3]
+menu = 0
+# Menú
+while menu != 3:
+    print('1 - Obtener la palabra más grande por orden alfabético (usando el operador ">").')
+    print('2 - Obtener la palabra más grande por cantidad de letras (longitud de la palabra).')
+    print('3 - Salir del programa.')
+    if menu == 1:
+        pass
+    elif menu == 2:
+        pass
+    elif menu == 3:
+        break
+    else:
+        print('Error de menú, por favor vuelva a ingresar la opción.\n')
+
+
+print('\nElija la opción que desee:')
+print('1 - Ordenar por orden alfabético.')
+print('2 - Ordenar por cantidad de letras.\n')
+menu = int(input())
+
+# Ordenado alfabético
+if menu == 1:
+    for x in [0, 2, 3]:
+        if texto[0] > texto[1]:
+            if texto [1] < texto[2]:
+                temp = texto[1] # Variable temporal
+                texto[1] = texto[2] # Intercambio de posiciones
+                texto[2] = temp # Rescato dato del temporal
+        else:
+            temp = texto[0]
+            texto[0] = texto[1]
+            texto[1] = temp 
+    print('Palabras ordenadas alfabéticamente: ', texto)
+
+# Ordenado por longitud
+elif menu == 2:
+   for x in [0, 2, 3]:
+        if len(texto[0]) > len(texto[1]):
+            if len(texto [1]) < len(texto[2]):
+                temp = texto[1] 
+                texto[1] = texto[2]
+                texto[2] = temp
+        else:
+            temp = texto[0]
+            texto[0] = texto[1]
+            texto[1] = temp 
+   print('Palabras ordenadas por longitud: ', texto)
+
+else:
+    print('\nError de menú.')
